@@ -40,6 +40,10 @@ export default function NewGoalForm({ onAddGoal }: NewGoalFormProps) {
     const enteredGoal = goalRef.current!.value;
     const enteredSummary = summaryRef.current!.value;
     onAddGoal(enteredGoal, enteredSummary);
+
+    goalRef.current!.value = '';
+    summaryRef.current!.value = '';
+    onFormChange();
   }
 
   return (
