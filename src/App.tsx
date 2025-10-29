@@ -8,7 +8,7 @@ import Header from "./components/Header";
 export default function App() {
   const [goals, setGoals] = useState<CourseGoalType[]>([]);
 
-  function handleAddGoal() {
+  function handleAddGoal(): void {
     // Use use state's function when new state depends on previous state
     setGoals((prevGoals) => {
       const newGoal: CourseGoalType = {
@@ -21,13 +21,17 @@ export default function App() {
     });
   }
 
+  function handleDeleteGoal(idToDelete: number): void {
+    setGoals((prevGoals) => prevGoals.filter(({ id }) => id !== idToDelete));
+  }
+
   return (
     <main>
       <Header image={{ src: headerImage, alt: "A list of goals" }}>
         <h1>Your Course Goals</h1>
       </Header>
       <button onClick={handleAddGoal}>Add Goal</button>
-      <CourseGoalList goals={goals} />
+      <CourseGoalList goals={goals} onGoalDeleted={handleDeleteGoal} />
     </main>
   );
 }
