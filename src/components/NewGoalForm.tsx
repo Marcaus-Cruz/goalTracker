@@ -42,7 +42,7 @@ export default function NewGoalForm({ onAddGoal }: NewGoalFormProps) {
     onAddGoal(enteredGoal, enteredSummary);
 
     event.currentTarget.reset();
-    onFormChange();
+    onFormChange(); // Re-add the invalid classes
   }
 
   return (
