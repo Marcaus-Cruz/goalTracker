@@ -48,25 +48,14 @@ export default function NewGoalForm({ onAddGoal }: NewGoalFormProps) {
   return (
     <form onSubmit={submit} onChange={onFormChange}>
       <p>
-        <label
-          htmlFor={goalString}
-          className={formIsValid.goal ? "" : "invalid"}
-        >
-          Your goal:
+        <label htmlFor={goalString}>
+          Your goal: {formIsValid.goal ? null : <RequiredIndicator />}
         </label>
-        <input
-          id={goalString}
-          name={goalString}
-          type="text"
-          ref={goalRef}
-        />
+        <input id={goalString} name={goalString} type="text" ref={goalRef} />
       </p>
       <p>
-        <label
-          htmlFor={summaryString}
-          className={formIsValid.summary ? "" : "invalid"}
-        >
-          Summary:
+        <label htmlFor={summaryString}>
+          Summary: {formIsValid.summary ? null : <RequiredIndicator />}
         </label>
         <input
           id={summaryString}
@@ -75,9 +64,14 @@ export default function NewGoalForm({ onAddGoal }: NewGoalFormProps) {
           ref={summaryRef}
         />
       </p>
+      <RequiredIndicator /> = required
       <p>
         <button>Confirm</button>
       </p>
     </form>
   );
+}
+
+function RequiredIndicator() {
+  return <span className="invalid">*</span>;
 }
